@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal - Log In</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(135deg, #003087 0%, #009cde 100%);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        .paypal-logo {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .paypal-logo span:first-child {
+            color: #003087;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .paypal-logo span:last-child {
+            color: white;
+        }
+
+        .tagline {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .sub-tagline {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0070e0;
+            box-shadow: 0 0 0 3px rgba(0, 112, 224, 0.1);
+        }
+
+        .form-group input.error {
+            border-color: #e74c3c;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .form-options label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-options input[type="checkbox"] {
+            accent-color: #0070e0;
+        }
+
+        .form-options a {
+            color: #0070e0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-options a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: #0070e0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #005bb5;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 112, 224, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e1e1e1;
+        }
+
+        .divider span {
+            padding: 0 12px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-social {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-social:hover {
+            border-color: #0070e0;
+            background: #f8f9fa;
+        }
+
+        .sign-up {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .sign-up a {
+            color: #0070e0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sign-up a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-panel {
+                padding: 30px 20px;
+            }
+
+            .paypal-logo {
+                font-size: 36px;
+            }
+
+            .tagline {
+                font-size: 18px;
+            }
+
+            .right-panel {
+                padding: 30px 20px;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="paypal-logo">
+                <span>Pay</span><span>Pal</span>
+            </div>
+            <div class="tagline">The safe and easy way to pay<br>and get paid</div>
+            <div class="sub-tagline">
+                Join over 400 million people who use PayPal to send money, make payments, and manage their finances securely.
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="form-header">
+                <h2>Log in to your account</h2>
+                <p>Enter your PayPal email or phone number</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email or phone number</label>
+                    <input type="text" id="email" name="email" placeholder="you@example.com" autocomplete="off" required>
+                    <div class="error-message" id="emailError">Please enter a valid email or phone number</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="off" required>
+                    <div class="error-message" id="passwordError">Password is required</div>
+                </div>
+
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" id="remember">
+                        Remember me
+                    </label>
+                    <a href="#" id="forgotPassword">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn-primary" id="loginBtn">
+                    Log in
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+
+            <div class="social-buttons">
+                <button class="btn-social" onclick="handleSocialLogin('google')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.11 19.27 5 16.2 5 12.5 5 8.81 8.11 5.73 12.19 5.73c3.01 0 6.18 1.63 6.5 5.44h3.25c-.33-4.98-4.58-7.68-9.75-7.68C6.85 3.49 2.5 7.52 2.5 12.5s4.35 9.01 9.5 9.01c5.17 0 9.42-2.7 9.75-7.68h-3.25z"/>
+                    </svg>
+                    Google
+                </button>
+                <button class="btn-social" onclick="handleSocialLogin('apple')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16.365 1.43c0 1.43-.98 3.17-2.61 4.23-1.62 1.06-4.11 1.8-5.86.73-1.55-.93-2.12-3.23-1.1-4.66 1.01-1.43 3.35-1.86 4.9-.93 1.55.93 2.2 2.6 2.2 4.23 0 1.63-.65 3.3-2.2 4.23-1.55.93-3.89.5-4.9-.93-1.02-1.43-.45-3.73 1.1-4.66 1.75-1.06 4.24-.33 5.86.73 1.63 1.06 2.61 2.8 2.61 4.23z"/>
+                    </svg>
+                    Apple
+                </button>
+            </div>
+
+            <div class="sign-up">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+
+            <div class="footer">
+                © 1999-2024 PayPal Inc. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form validation and submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            let valid = true;
+            
+            // Validate email
+            const emailValue = email.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePattern = /^\+?[\d\s\-()]+$/;
+            
+            if (!emailValue) {
+                email.classList.add('error');
+                emailError.textContent = 'Email or phone number is required';
+                emailError.style.display = 'block';
+                valid = false;
+            } else if (!emailPattern.test(emailValue) && !phonePattern.test(emailValue)) {
+                email.classList.add('error');
+                emailError.textContent = 'Please enter a valid email or phone number';
+                emailError.style.display = 'block';
+                valid = false;
+            } else {
+                email.classList.remove('error');
+                emailError.style.display = 'none';
+            }
+            
+            // Validate password
+            if (!password.value) {
+                password.classList.add('error');
+                passwordError.style.display = 'block';
+                valid = false;
+            } else if (password.value.length < 8) {
+                password.classList.add('error');
+                passwordError.textContent = 'Password must be at least 8 characters';
+                passwordError.style.display = 'block';
+                valid = false;
+            } else {
+                password.classList.remove('error');
+                passwordError.style.display = 'none';
+            }
+            
+            if (valid) {
+                // Simulate login
+                loginBtn.innerHTML = '<span class="loading"></span> Logging in...';
+                loginBtn.disabled = true;
+                
+                setTimeout(() => {
+                    loginBtn.innerHTML = 'Log in';
+                    loginBtn.disabled = false;
+                    alert(`Logged in as: ${emailValue}\nPassword: ${password.value}\nRemember me: ${document.getElementById('remember').checked}`);
+                }, 2000);
+            }
+        });
+        
+        // Clear errors on input
+        document.getElementById('email').addEventListener('input', function() {
+            this.classList.remove('error');
+            document.getElementById('emailError').style.display = 'none';
+        });
+        
+        document.getElementById('password').addEventListener('input', function() {
+            this.classList.remove('error');
+            document.getElementById('passwordError').style.display = 'none';
+        });
+        
+        // Social login handler
+        function handleSocialLogin(provider) {
+            alert(`Redirecting to ${provider} login...`);
+        }
+        
+        // Forgot password handler
+        document.getElementById('forgotPassword').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            if (email) {
+                alert(`Password reset link sent to: ${email}`);
+            } else {
+                alert('Please enter your email first, then click "Forgot password?"');
+            }
+        });
+    </script>
+</body>
+</html>
